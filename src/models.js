@@ -18,8 +18,20 @@ export default async function models(sequelize, sync) {
       allowNull: false,
       unique: false,
     },
+    created_at: {
+      allowNull: false,
+      type: 'TIMESTAMP',
+      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+    },
+    updated_at: {
+      allowNull: false,
+      type: 'TIMESTAMP',
+      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+    }
   }, {
     tableName: 'clientes',
+    createdAt: false,
+    updatedAt: false,
   })
   
   const Usuario = sequelize.define('Usuario', {
@@ -37,9 +49,21 @@ export default async function models(sequelize, sync) {
       type: Sequelize.STRING,
       allowNull: false,
       unique: false,
+    },
+    created_at: {
+      allowNull: false,
+      type: 'TIMESTAMP',
+      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+    },
+    updated_at: {
+      allowNull: false,
+      type: 'TIMESTAMP',
+      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
     }
   }, {
     tableName: 'usuarios',
+    createdAt: false,
+    updatedAt: false,
   })
   
   const Pedido = sequelize.define('Pedido', {
@@ -62,9 +86,21 @@ export default async function models(sequelize, sync) {
       defaultValue: "nuevo",
       allowNull: false,
       unique: false,
+    },
+    created_at: {
+      allowNull: false,
+      type: 'TIMESTAMP',
+      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+    },
+    updated_at: {
+      allowNull: false,
+      type: 'TIMESTAMP',
+      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
     }
   }, {
     tableName: 'pedidos',
+    createdAt: false,
+    updatedAt: false,
     indexes: [
       {unique: true, fields: ['id_cliente', 'codigo']}
     ]
@@ -87,8 +123,20 @@ export default async function models(sequelize, sync) {
       defaultValue: 0,
       unique: false,
     },
+    created_at: {
+      allowNull: false,
+      type: 'TIMESTAMP',
+      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+    },
+    updated_at: {
+      allowNull: false,
+      type: 'TIMESTAMP',
+      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+    }
   }, {
     tableName: 'linea_pedidos',
+    createdAt: false,
+    updatedAt: false,
   })
   
   const Producto = sequelize.define('Producto', {
@@ -137,8 +185,20 @@ export default async function models(sequelize, sync) {
       allowNull: false,
       unique: false,
     },
+    created_at: {
+      allowNull: false,
+      type: 'TIMESTAMP',
+      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+    },
+    updated_at: {
+      allowNull: false,
+      type: 'TIMESTAMP',
+      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+    }
   }, {
     tableName: 'productos',
+    createdAt: false,
+    updatedAt: false,
   })
   
   const Proveedor = sequelize.define('Proveedor', {
@@ -161,9 +221,21 @@ export default async function models(sequelize, sync) {
       set(val) {
         this.setDataValue('telefonos', val.join(','))
       }
+    },
+    created_at: {
+      allowNull: false,
+      type: 'TIMESTAMP',
+      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+    },
+    updated_at: {
+      allowNull: false,
+      type: 'TIMESTAMP',
+      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
     }
   }, {
     tableName: 'proveedores',
+    createdAt: false,
+    updatedAt: false,
   })
   
   Cliente.belongsTo(Usuario, {

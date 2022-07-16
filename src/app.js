@@ -15,17 +15,25 @@ const { Producto, Usuario, Cliente, Pedido, LineaPedido } = await models(sequeli
 import express from 'express'
 import cors from 'cors'
 import { crud } from 'express-crud-router'
-import sequelizeCrud from 'express-crud-router-sequelize-v6-connector'
+import sequelizeCrud from "express-crud-router-sequelize-v6-connector"; 
 
 const port = 4000
 const app = express()
 
 app.use(cors())
-app.use(crud('/clientes', sequelizeCrud.default(Cliente)))
-app.use(crud('/usuarios', sequelizeCrud.default(Usuario)))
-app.use(crud('/productos', sequelizeCrud.default(Producto)))
-app.use(crud('/pedidos', sequelizeCrud.default(Pedido)))
-app.use(crud('/lineapedidos', sequelizeCrud.default(LineaPedido)))
+//app.use(crud('/clientes', sequelizeV6Crud(Cliente)))
+app.use(crud('/usuarios', {
+  ...sequelizeCrud.default(Usuario),
+}))
+app.use(crud('/clientes', {
+  ...sequelizeCrud.default(Cliente),
+}))
+app.use(crud('/pedidos', {
+  ...sequelizeCrud.default(Pedido),
+}))
+//app.use(crud('/productos', sequelizeV6Crud(Producto)))
+//app.use(crud('/pedidos', sequelizeV6Crud(Pedido)))
+//app.use(crud('/lineapedidos', sequelizeV6Crud(LineaPedido)))
 
 
 app.listen(port, () => {
